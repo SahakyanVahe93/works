@@ -5,7 +5,7 @@ export default function Weather() {
 
   return (
     <div>
-     {this.props.city}
+     {/* {this.props.city} */}
     </div>
   );
 }
