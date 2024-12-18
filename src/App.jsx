@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Info from './components/info';
 import Form from './components/form';
 import Weather from './components/weather';
@@ -13,8 +13,21 @@ export default function App() {
     city: undefined,
     country: undefined,
     sunset: undefined,
+    sunrise: undefined,
     error: undefined
   });
+
+  // State for the current time
+  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
+
+  // Update the current time every second
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString());
+    }, 1000);
+
+    return () => clearInterval(intervalId); // Clean up the interval when the component unmounts
+  }, []);
 
   const gettingWeather = async (e) => {
     e.preventDefault();
@@ -28,13 +41,23 @@ export default function App() {
       const data = await response.json();
       console.log(data);
 
-     
+      // Get sunset and sunrise time (in UNIX timestamp)
+      const sunset = data.sys.sunset;
+      const sunrise = data.sys.sunrise;
+
+      // Convert sunset and sunrise time from UNIX timestamp to time format
+      const formatTime = (timestamp) => {
+        const date = new Date(timestamp * 1000); // Convert from UNIX timestamp (in seconds)
+        return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+      };
+
       setWeatherData({
         temp: data.main.temp,
         city: data.name,
         country: data.sys.country,
-        sunset: data.sys.sunset, 
-        error: ''
+        sunset: formatTime(sunset),
+        sunrise: formatTime(sunrise),
+        error: ""
       });
     } catch (error) {
       console.error('Error fetching weather data:', error);
@@ -47,14 +70,24 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="container">
       <Info />
+      
+      {/* Current time display */}
+      <div className="current-time">
+        <h2>Current Time: {currentTime}</h2>
+      </div>
+      
+      {/* Form for entering city */}
       <Form WeatherMethod={gettingWeather} />
+      
+      {/* Weather information display */}
       <Weather
         temp={weatherData.temp}
         city={weatherData.city}
         country={weatherData.country}
         sunset={weatherData.sunset}
+        sunrise={weatherData.sunrise}
         error={weatherData.error}
       />
     </div>

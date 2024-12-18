@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export default function Weather() {
-  
+const Weather = ({ temp, city, country, sunset,sunrise, error }) => {
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div>
-     {/* {this.props.city} */}
+      {city && (
+        <div>
+          <p>Location: {city}, {country}</p>
+          <p>Temperature: {temp}°C</p>
+          <p>Sunset: {sunset}</p>
+          <p>sunris:{sunrise}</p>
+          
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default Weather;

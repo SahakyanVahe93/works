@@ -1,0 +1,111 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* General styling for the entire app */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+  
+  h1, h2 {
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Styling for the Info component */
+  .info-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .current-time {
+    font-size: 1.5em;
+    color: #555;
+    margin: 20px 0;
+  }
+  
+  /* Form styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+  
+  form input {
+    padding: 10px;
+    margin: 10px;
+    font-size: 1.1em;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  form button {
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    border: none;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  form button:hover {
+    background-color: #4cae4c;
+  }
+  
+  /* Weather component styling */
+  .weather-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .weather-container h3 {
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .weather-info {
+    font-size: 1.2em;
+    color: #555;
+  }
+  
+  .weather-error {
+    color: red ;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .weather-info p {
+    margin: 5px 0;
+  }
+  
